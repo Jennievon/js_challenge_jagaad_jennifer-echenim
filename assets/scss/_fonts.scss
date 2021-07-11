@@ -1,0 +1,37 @@
+@font-face {
+	font-family: 'Lato';
+	src: url('~assets/fonts/Lato-Regular.ttf');
+	src: local('Lato Regular'), local('Lato-Regular'), url('~assets/fonts/Lato-Regular.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+
+
+@font-face {
+    font-family: 'Lato';
+    src: url('~assets/fonts/Lato-Bold.ttf');
+    src: local('Lato Bold'), local('Lato-Bold'), url('~assets/fonts/Lato-Bold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lato-Italic';
+    src: url('~assets/fonts/Lato-BoldItalic.ttf');
+    src: local('Lato BoldItalic'), local('Lato-BoldItalic'),  url('~assets/fonts/Lato-BoldItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lato-Italic';
+    src: url('~assets/fonts/Lato-BoldItalic.ttf');
+    src: local('Lato BoldItalic'), local('Lato-BoldItalic'), url('~assets/fonts/Lato-BoldItalic.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
