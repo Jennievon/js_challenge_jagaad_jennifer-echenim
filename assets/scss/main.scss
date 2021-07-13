@@ -1,7 +1,8 @@
 :root {
 	--page-container-margin: 20px;
 	--color-black: #444A59;
-    --backgrounnd-color: #f8f8f8;
+	--color-white: #FFFFFF;
+    --background-color: #f8f8f8;
 
 	--section-max-width: 1240px;
 
@@ -12,3 +13,4 @@
 
 @import './fonts';
 @import './reset';
+@import './page';
