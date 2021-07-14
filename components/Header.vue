@@ -6,12 +6,12 @@
       </div>
       <aside class="header-bag">
         <div class="header-bag__item header-bag__count">
-          <div class="header-bag__price">&euro; 0</div>
-          <img src="~/assets/images/bag.svg" alt="bag-icon" />
+          <div class="header-bag__price">&euro;0</div>
+          <img src="~/assets/images/bag-icon.svg" alt="bag-icon" />
           <span class="bag__item-counter">0</span>
         </div>
         <div class="header-bag__item header-bag__wishlist-count">
-          <img src="~/assets/images/bag.svg" alt="bag-icon" />
+          <img src="~/assets/images/wishlist-icon.svg" alt="wishlist-icon" />
           <span class="bag__item-counter">5</span>
         </div>
       </aside>
