@@ -24,7 +24,8 @@ describe('Index Page', () => {
 
   it('Gets product from the API', () => {
     cy.visit('/')
-    cy.get('@products').then((body: any) => {
+    // @ts-ignore
+    cy.get('@products').then(({ body }) => {
       products = body.map((product: PRODUCT_ITEM) => {
         return {
           cover_image_url: product.cover_image_url,
@@ -62,4 +63,6 @@ describe('Index Page', () => {
     cy.wait(500)
     cy.get('.product-list').get('li').should('have.length', 11)
   })
+
+
 })

@@ -104,8 +104,6 @@ export default class Products extends Vue {
   }
 
   addProductToCart(item: PRODUCT_ITEM) {
-    console.log(item)
-
     item &&
       this.addToCart({
         uuid: item.uuid,
