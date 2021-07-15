@@ -34,7 +34,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import Products from '~/components/Products.vue'
 import Pagination from '~/components/Pagination.vue'
-import { FETCH_PARAMS, PRODUCT_ITEM, SET_PRODUCTS_PAYLOAD } from '~/@types'
+import { FETCH_PARAMS, PRODUCT_ITEM } from '~/@types'
 
 @Component({ components: { Products, Pagination } })
 export default class Home extends Vue {
