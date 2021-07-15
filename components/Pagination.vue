@@ -5,22 +5,32 @@
         class="prev"
         :disabled="currentPage === 1"
         @click="$emit('previousPage', currentPage - 1)"
+        aria-label="Go to previous page"
       >
         <img src="~/assets/svg/arrow-left.svg" alt="previous navigation icon" />
       </button>
       <ul v-if="productList">
         <li v-if="numberOfPages >= 1" :class="{ active: currentPage === 1 }">
-          <button @click="$emit('firstPage', 1)">1</button>
+          <button @click="$emit('firstPage', 1)" aria-label="Go to first page">
+            1
+          </button>
         </li>
         <li v-if="numberOfPages >= 2" :class="{ active: currentPage === 2 }">
-          <button @click="$emit('goToPage', 2)">2</button>
+          <button @click="$emit('goToPage', 2)" aria-label="Go to second page">
+            2
+          </button>
         </li>
         <li v-if="numberOfPages >= 3" :class="{ active: currentPage === 3 }">
-          <button @click="$emit('goToPage', 3)">3</button>
+          <button @click="$emit('goToPage', 3)" aria-label="Go to third page">
+            3
+          </button>
         </li>
         <li v-if="numberOfPages > 3">...</li>
-        <li v-if="numberOfPages > 5">
-          <button @click="$emit('lastPage', numberOfPages)">
+        <li v-if="numberOfPages > 3">
+          <button
+            @click="$emit('lastPage', numberOfPages)"
+            aria-label="Go to last page"
+          >
             {{ numberOfPages }}
           </button>
         </li>
@@ -28,6 +38,7 @@
       <button
         :disabled="currentPage === numberOfPages"
         @click="$emit('nextPage', currentPage + 1)"
+        aria-label="Go to next page"
       >
         <img src="~/assets/svg/arrow-right.svg" alt="next navigation icon" />
       </button>

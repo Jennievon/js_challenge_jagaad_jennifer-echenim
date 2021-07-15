@@ -32,6 +32,7 @@
             class="product-list__item__add-to-cart button button--primary"
             :class="inCart(product) ? 'button--in-cart ' : ''"
             @click="addProductToCart(product)"
+            data-id="item__add-to-cart"
           >
             {{ inCart(product) ? 'In Cart' : 'Add to Cart' }}
           </button>
@@ -42,6 +43,7 @@
             button button--round button--wishlist
           "
           @click="toggleWishlist(product)"
+          data-id="item__add-to-wishlist"
         >
           <svg
             width="20px"
