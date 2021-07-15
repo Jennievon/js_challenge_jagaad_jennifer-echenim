@@ -52,7 +52,7 @@ export const getters: GetterTree<RootState, RootState> = {
     ag: (state: STATE) => state.cart,
 
     priceInCart: (state: STATE) =>
-        state.cart.reduce((s, item) => s + item.value, 0),
+        state.cart.reduce((s, item) => s + Number(item.value), 0),
 
     isInWishlist: (state: STATE) => (uuid: String) =>
         state.wishlist.includes(uuid),
@@ -60,7 +60,7 @@ export const getters: GetterTree<RootState, RootState> = {
     isInCart: (state: STATE) => (uuid: String) =>
         state.cart.some((item) => item.uuid === uuid),
 
-    countCart: (state: STATE) => state.cart.length,
+    countItemsInCart: (state: STATE) => state.cart.length,
 
     countWishlist: (state: STATE) => state.wishlist.length,
 }

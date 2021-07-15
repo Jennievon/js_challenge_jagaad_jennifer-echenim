@@ -8,7 +8,7 @@
         <div class="header-bag__item header-bag__count">
           <div class="header-bag__price">{{ price }}</div>
           <img src="~/assets/svg/bag-icon.svg" alt="bag-icon" />
-          <span class="bag__item-counter">{{ countCart }}</span>
+          <span class="bag__item-counter">{{ countItemsInCart }}</span>
         </div>
         <div class="header-bag__item header-bag__wishlist-count">
           <img src="~/assets/svg/wishlist-icon.svg" alt="wishlist-icon" />
@@ -28,7 +28,7 @@ export default Vue.extend({
     return {}
   },
   computed: {
-    ...mapGetters(['priceInCart', 'countCart', 'countWishlist', 'cart']),
+    ...mapGetters(['priceInCart', 'countItemsInCart', 'countWishlist', 'cart']),
 
     price() {
       return new Intl.NumberFormat('en-EN', {

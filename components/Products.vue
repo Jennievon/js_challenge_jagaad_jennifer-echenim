@@ -41,7 +41,7 @@
             product-list__item__wishlist-button
             button button--round button--wishlist
           "
-          @click="toggleFavorite(product)"
+          @click="toggleWishlist(product)"
         >
           <svg
             width="20px"
@@ -93,7 +93,7 @@ export default class Products extends Vue {
     return product && product.discount > 0
   }
 
-  toggleFavorite(product: PRODUCT_ITEM) {
+  toggleWishlist(product: PRODUCT_ITEM) {
     if (product) {
       this.inWishlist(product)
         ? this.removeFromWishlist(product.uuid)
@@ -107,9 +107,9 @@ export default class Products extends Vue {
     item &&
       this.addToCart({
         uuid: item.uuid,
-        price: item.value,
+        value: item.value,
         title: item.title,
-        img: item.cover_image_url,
+        image: item.cover_image_url,
       })
   }
 }
