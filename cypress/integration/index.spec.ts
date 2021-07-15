@@ -24,7 +24,7 @@ describe('Index Page', () => {
 
   it('Gets product from the API', () => {
     cy.visit('/')
-    cy.get('@products').then(({ body }) => {
+    cy.get('@products').then((body: any) => {
       products = body.map((product: PRODUCT_ITEM) => {
         return {
           cover_image_url: product.cover_image_url,
