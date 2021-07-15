@@ -1,74 +1,74 @@
 <template>
-    <div class="pagination" :class="noPagination ? 'display-none' : ''">
+    <div class="pagination">
         <div class="summary">
-            {{ paginationData.currentPage * 20 - 19 }} -
+            {{ currentPage * 10 - 9 }} -
             {{
-                paginationData.totalPages === paginationData.currentPage
-                    ? paginationData.totalItems
-                    : paginationData.currentPage * 20
+                numberOfPages === currentPage
+                    ? totalItems
+                    : currentPage * 10
             }}
-            of {{ paginationData.totalItems }} items
+            of {{ totalItems }} items
         </div>
         <div class="navigation">
             <button
                 class="prev"
-                :disabled="paginationData.currentPage === 1"
-                @click="getLeads({ page: paginationData.currentPage - 1 })"
+                :disabled="currentPage === 1"
+                @click="$emit('previousPage', (currentPage - 1))"
             >
                 <img
                     src="~/assets/images/arrow-left.svg"
                     alt="previous navigation icon"
                 />
             </button>
-            <ul v-if="paginationData">
+            <ul v-if="productList">
                 <li
-                    :class="{ active: paginationData.currentPage === 1 }"
-                    v-if="paginationData.totalPages >= 1"
+                    v-if="numberOfPages >= 1"
+                    :class="{ active: currentPage === 1 }"
                 >
-                    <button @click="getLeads({ page: 1 })">1</button>
+                    <button @click="$emit('firstPage', 1)">1</button>
                 </li>
                 <li
-                    :class="{ active: paginationData.currentPage === 2 }"
-                    v-if="paginationData.totalPages >= 2"
+                    v-if="numberOfPages >= 2"
+                    :class="{ active: currentPage === 2 }"
                 >
-                    <button @click="getLeads({ page: 2 })">2</button>
+                    <button @click="$emit('goToPage',(2))">2</button>
                 </li>
                 <li
-                    :class="{ active: paginationData.currentPage === 3 }"
-                    v-if="paginationData.totalPages >= 3"
+                    v-if="numberOfPages >= 3"
+                    :class="{ active: currentPage === 3 }"
                 >
-                    <button @click="getLeads({ page: 3 })">3</button>
+                    <button @click="$emit('goToPage', (3))">3</button>
                 </li>
                 <li
-                    :class="{ active: paginationData.currentPage === 4 }"
-                    v-if="paginationData.totalPages >= 4"
+                    v-if="numberOfPages >= 4"
+                    :class="{ active: currentPage === 4 }"
                 >
-                    <button @click="getLeads({ page: 4 })">4</button>
+                    <button @click="$emit('goToPage', (4))">4</button>
                 </li>
                 <li
-                    :class="{ active: paginationData.currentPage === 5 }"
-                    v-if="paginationData.totalPages >= 5"
+                    v-if="numberOfPages >= 5"
+                    :class="{ active: currentPage === 5 }"
                 >
-                    <button @click="getLeads({ page: 5 })">5</button>
+                    <button @click="$emit('goToPage',(5))">5</button>
                 </li>
-                <li v-if="paginationData.totalPages > 5">...</li>
-                <li v-if="paginationData.totalPages > 5">
+                <li v-if="numberOfPages > 5">...</li>
+                <li v-if="numberOfPages > 5">
                     <button
                         @click="
-                            getLeads({
-                                page: paginationData.totalPages,
-                            })
+                            $emit('lastPage', (
+                                numberOfPages
+                            ))
                         "
                     >
-                        {{ paginationData.totalPages }}
+                        {{ numberOfPages }}
                     </button>
                 </li>
             </ul>
             <button
                 :disabled="
-                    paginationData.currentPage === paginationData.totalPages
+                    currentPage === numberOfPages
                 "
-                @click="getLeads({ page: paginationData.currentPage + 1 })"
+                @click="$emit('nextPage', ( currentPage + 1 ))"
             >
                 <img
                     src="~/assets/images/arrow-right.svg"
@@ -80,9 +80,15 @@
 </template>
 
 <script lang="ts">
-import { Prop, Vue } from 'nuxt-property-decorator'
-export default class Products extends Vue {
-    @Prop(Array) readonly paginationData!: []
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
+
+@Component
+export default class Pagination extends Vue {
+    @Prop(Array) readonly productList !: [];
+    @Prop(Number) readonly currentPage !: 0
+    @Prop(Number) readonly totalItems !: 0
+    @Prop(Number) readonly numberOfPages !: 0
+    @Prop(Number) readonly numberPerPage !:  0
 }
 </script>
 

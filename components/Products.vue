@@ -5,9 +5,10 @@
                 <div class="product-list__item--cover-image">
                     <img :src="product.cover_image_url" alt="cover image">
                 </div>
-                <div>
+                <div class="product-list__item--body">
                     <h4 class="product-list__item--title">{{product.title}}</h4>
                     <p class="product-list__item--description">{{product.description}}</p>
+                    <button class="product-list__item__add-to-cart button button--primary">Add to Cart</button>
                 </div>
             </li>
         </ul>
@@ -15,9 +16,10 @@
 </template>
 
 <script lang="ts">
-import { Prop, Vue } from 'nuxt-property-decorator'
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { PRODUCT_ITEM } from '~/@types'
 
+@Component
 export default class Products extends Vue {
     @Prop() products!: Array<PRODUCT_ITEM>
 }
@@ -31,6 +33,10 @@ export default class Products extends Vue {
         &__item {
             background: var(--color-white);
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
 
             &--cover-image {
                 padding: 10px;
@@ -38,6 +44,11 @@ export default class Products extends Vue {
                 img {
                     width: 100%;
                 }
+            }
+            &--body {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
             }
             &--title {
                 text-transform: uppercase;
@@ -51,6 +62,24 @@ export default class Products extends Vue {
                 line-height: 19px;
                 letter-spacing: 0.43px;
                 color: #808080;
+            }
+            &__wishlist-button {
+                width: 35px;
+                height: 35px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                position: absolute;
+                top: 10px;
+                right: 10px;
+            }
+
+            &__add-to-cart {
+                width: 100%;
+                margin-top: 10px;
+                margin-top: auto;
             }
         }
     }
