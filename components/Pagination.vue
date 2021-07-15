@@ -1,14 +1,5 @@
 <template>
     <div class="pagination">
-        <div class="summary">
-            {{ currentPage * 10 - 9 }} -
-            {{
-                numberOfPages === currentPage
-                    ? totalItems
-                    : currentPage * 10
-            }}
-            of {{ totalItems }} items
-        </div>
         <div class="navigation">
             <button
                 class="prev"
@@ -39,19 +30,7 @@
                 >
                     <button @click="$emit('goToPage', (3))">3</button>
                 </li>
-                <li
-                    v-if="numberOfPages >= 4"
-                    :class="{ active: currentPage === 4 }"
-                >
-                    <button @click="$emit('goToPage', (4))">4</button>
-                </li>
-                <li
-                    v-if="numberOfPages >= 5"
-                    :class="{ active: currentPage === 5 }"
-                >
-                    <button @click="$emit('goToPage',(5))">5</button>
-                </li>
-                <li v-if="numberOfPages > 5">...</li>
+                <li v-if="numberOfPages > 3">...</li>
                 <li v-if="numberOfPages > 5">
                     <button
                         @click="
@@ -102,13 +81,13 @@ export default class Pagination extends Vue {
 
     @media (min-width: 450px) {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         padding: 0 35px 35px;
     }
 
     .navigation > button {
-        background: transparent;
-        border: 1px solid #e2e2ea;
+        background: none;
+        border: none;
         box-sizing: border-box;
         border-radius: 8px;
         width: 32px;
@@ -145,28 +124,10 @@ export default class Pagination extends Vue {
                 color: rgba(var(--color-black-rgb), 0.48);
                 line-height: 24px;
                 text-align: center;
-            }
-
-            &.active {
-                button {
-                    color: var(--color-black);
-                    font-weight: bold;
-                }
+                background: none;
+                border: none;
             }
         }
-    }
-
-    .summary {
-        color: #1e1147;
-        @media (max-width: 450px) {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-    }
-
-    &.display-none {
-        display: none;
     }
 }
 </style>
