@@ -6,13 +6,13 @@
       </div>
       <aside class="header-bag">
         <div class="header-bag__item header-bag__count">
-          <div class="header-bag__price">&euro;0</div>
-          <img src="~/assets/images/bag-icon.svg" alt="bag-icon" />
-          <span class="bag__item-counter">0</span>
+          <div class="header-bag__price">{{ price }}</div>
+          <img src="~/assets/svg/bag-icon.svg" alt="bag-icon" />
+          <span class="bag__item-counter">{{ countCart }}</span>
         </div>
         <div class="header-bag__item header-bag__wishlist-count">
-          <img src="~/assets/images/wishlist-icon.svg" alt="wishlist-icon" />
-          <span class="bag__item-counter">5</span>
+          <img src="~/assets/svg/wishlist-icon.svg" alt="wishlist-icon" />
+          <span class="bag__item-counter">{{ countWishlist }}</span>
         </div>
       </aside>
     </nav>
@@ -21,9 +21,21 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapGetters } from 'vuex'
+
 export default Vue.extend({
   data() {
     return {}
+  },
+  computed: {
+    ...mapGetters(['priceInCart', 'countCart', 'countWishlist', 'cart']),
+
+    price() {
+      return new Intl.NumberFormat('en-EN', {
+        style: 'currency',
+        currency: 'EUR',
+      }).format(this.priceInCart)
+    },
   },
 })
 </script>

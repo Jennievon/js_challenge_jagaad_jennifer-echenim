@@ -3,6 +3,9 @@
     height: 20px;
     fill: #d9d9d9;
     transition: .3s fill;
+    &__active {
+        fill: #fcbd50;
+    }
 }
 
 .button {
@@ -21,7 +24,6 @@
 
 .button--primary {
     padding: 13px;
-
     font-family: 'Lato-Bold', sans-serif;
     font-size: 13px;
     text-transform: uppercase;

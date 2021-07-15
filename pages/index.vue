@@ -1,8 +1,8 @@
 <template>
   <div>
     <Header />
-    <Products :products="productList" />
-    <Pagination 
+    <Products :products="productList" @add-product="addProduct" />
+    <Pagination
       :product-list="productList"
       :current-page="currentPage"
       :total-items="totalItems"
@@ -22,17 +22,17 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import Products from '~/components/Products.vue'
 import Pagination from '~/components/Pagination.vue'
-import { FETCH_PARAMS, PRODUCT_ITEM } from '~/@types'
+import { FETCH_PARAMS, PRODUCT_ITEM, SET_PRODUCTS_PAYLOAD } from '~/@types'
 
 @Component({ components: { Products, Pagination } })
 export default class Home extends Vue {
   loading: Boolean = false
   products: Array<PRODUCT_ITEM> = []
   productList: Array<PRODUCT_ITEM> = []
-  currentPage: number = 1;
-  totalItems: number =  0;
-  numberOfPages: number =  0;
-  numberPerPage: number =  10;
+  currentPage: number = 1
+  totalItems: number = 0
+  numberOfPages: number = 0
+  numberPerPage: number = 6
 
   async fetch() {
     await this.getProducts({ limit: 6, offset: 0 })
@@ -47,12 +47,15 @@ export default class Home extends Vue {
         return {
           cover_image_url: product.cover_image_url,
           title: product.title,
+          discount: product.discount,
           description: product.description,
-          net_price: product.retail_price.formatted_value,
-          id: product.uuid,
+          formatted_value: product.retail_price.formatted_value,
+          value: product.retail_price.value,
+          original_retail_price: product.original_retail_price,
+          uuid: product.uuid,
         }
       })
-      this.numberOfPages = this.getNumberOfPages(this.products);
+      this.numberOfPages = this.getNumberOfPages(this.products)
       this.loadProducts()
       this.loading = false
     } catch (error) {
@@ -63,41 +66,44 @@ export default class Home extends Vue {
     }
   }
 
-  
   loadProducts() {
-      const begin = (this.currentPage - 1) * this.numberPerPage;
-      const end = begin + this.numberPerPage;
-      this.productList = this.products.slice(begin, end);
-      this.totalItems = this.products.length;
+    const begin = (this.currentPage - 1) * this.numberPerPage
+    const end = begin + this.numberPerPage
+    this.productList = this.products.slice(begin, end)
+    this.totalItems = this.products.length
   }
 
   getNumberOfPages(data: Array<PRODUCT_ITEM>) {
-        return Math.ceil(data.length / this.numberPerPage);
-    }
+    return Math.ceil(data.length / this.numberPerPage)
+  }
 
-    nextPage() {
-        this.currentPage += 1;
-        this.loadProducts();
-    }
+  nextPage() {
+    this.currentPage += 1
+    this.loadProducts()
+  }
 
-    previousPage() {
-        this.currentPage -= 1;
-        this.loadProducts();
-    }
+  previousPage() {
+    this.currentPage -= 1
+    this.loadProducts()
+  }
 
-    firstPage() {
-        this.currentPage = 1;
-        this.loadProducts();
-    }
+  firstPage() {
+    this.currentPage = 1
+    this.loadProducts()
+  }
 
-    goToPage(page: number) {
-        this.currentPage = page;
-        this.loadProducts();
-    }
+  goToPage(page: number) {
+    this.currentPage = page
+    this.loadProducts()
+  }
 
-    lastPage() {
-        this.currentPage = this.numberOfPages;
-        this.loadProducts();
-    }
+  lastPage() {
+    this.currentPage = this.numberOfPages
+    this.loadProducts()
+  }
+
+  addProduct(item: PRODUCT_ITEM, type: String | Number) {
+    console.log(item)
+  }
 }
 </script>
