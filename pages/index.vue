@@ -1,7 +1,19 @@
 <template>
   <div>
-    <Header />
-    <Products :products="productList" @add-product="addProduct" />
+    <Header
+      ><template #cart="{ cartItemProp, total }">
+        <base-cart-dropdown
+          v-bind="{ item: cartItemProp, total, type: 'cart' }"
+          @deleteItem="deleteItem"
+        />
+      </template>
+      <template #wishlist="{ wishListProp, total }">
+        <base-cart-dropdown
+          @deleteItem="deleteItem"
+          v-bind="{ item: wishListProp, total, type: 'wishlist' }"
+        /> </template
+    ></Header>
+    <Products :products="productList" />
     <Pagination
       :product-list="productList"
       :current-page="currentPage"
@@ -42,7 +54,6 @@ export default class Home extends Vue {
     this.loading = true
     try {
       const request = await this.$store.dispatch('getProducts', params)
-      console.log(request)
       this.products = request.data.map((product: PRODUCT_ITEM) => {
         return {
           cover_image_url: product.cover_image_url,
@@ -60,7 +71,6 @@ export default class Home extends Vue {
       this.loading = false
     } catch (error) {
       this.loading = false
-      console.log(error)
     } finally {
       this.loading = false
     }
@@ -100,10 +110,6 @@ export default class Home extends Vue {
   lastPage() {
     this.currentPage = this.numberOfPages
     this.loadProducts()
-  }
-
-  addProduct(item: PRODUCT_ITEM, type: String | Number) {
-    console.log(item)
   }
 }
 </script>
