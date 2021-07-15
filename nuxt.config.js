@@ -1,5 +1,5 @@
 export default {
-  mode: 'spa',
+  ssr: false,
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'js_challenge_jagaad_jennifer-echenim',
@@ -39,19 +39,19 @@ export default {
     '@nuxtjs/axios'
   ],
 
-// Axios module configuration: https://go.nuxtjs.dev/config-axios
-axios: {
-  credentials: false,
-  baseURL: 'https://api.musement.com/api/v3/',
-  headers: {
-    common: {
-      'Content-Type': 'application/json',
-      'Accept-Language': 'it',
-      'X-Musement-Currency': 'EUR',
-      'X-Musement-Version': '3.4.0'
-    },
-  }
-},
+  // Axios module configuration: https://go.nuxtjs.dev/config-axios
+  axios: {
+    credentials: false,
+    baseURL: 'https://api.musement.com/api/v3/',
+    headers: {
+      common: {
+        'Content-Type': 'application/json',
+        'Accept-Language': 'it',
+        'X-Musement-Currency': 'EUR',
+        'X-Musement-Version': '3.4.0'
+      },
+    }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

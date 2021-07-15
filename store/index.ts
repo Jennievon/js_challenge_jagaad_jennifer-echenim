@@ -12,16 +12,6 @@ export const mutations: MutationTree<RootState> = {
     'SET_PRODUCTS'(state, products) {
         state.products.push(products)
     },
-    // 'SET_CART'(state: STATE, payload: SET_PRODUCTS_PAYLOAD) {
-    //     if (state.cart[payload.id.]) {
-    //         state.cart[payload.id].quantity = state.cart[payload.id].quantity + 1
-    //     } else {
-    //         state.cart[payload.id] = {
-    //             ...payload,
-    //             quantity: 1
-    //         }
-    //     }
-    // }
 
     addToCart(state: STATE, payload: PRODUCT_ITEM) {
         state.cart.push(payload)
