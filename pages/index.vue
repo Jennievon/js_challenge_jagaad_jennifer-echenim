@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Header />
-    <Products :products="productList" @add-product="addProduct" />
+    <Header></Header>
+    <Products :products="productList" />
     <Pagination
       :product-list="productList"
       :current-page="currentPage"
@@ -22,7 +22,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import Products from '~/components/Products.vue'
 import Pagination from '~/components/Pagination.vue'
-import { FETCH_PARAMS, PRODUCT_ITEM, SET_PRODUCTS_PAYLOAD } from '~/@types'
+import { FETCH_PARAMS, PRODUCT_ITEM } from '~/@types'
 
 @Component({ components: { Products, Pagination } })
 export default class Home extends Vue {
@@ -42,7 +42,6 @@ export default class Home extends Vue {
     this.loading = true
     try {
       const request = await this.$store.dispatch('getProducts', params)
-      console.log(request)
       this.products = request.data.map((product: PRODUCT_ITEM) => {
         return {
           cover_image_url: product.cover_image_url,
@@ -60,7 +59,6 @@ export default class Home extends Vue {
       this.loading = false
     } catch (error) {
       this.loading = false
-      console.log(error)
     } finally {
       this.loading = false
     }
@@ -100,10 +98,6 @@ export default class Home extends Vue {
   lastPage() {
     this.currentPage = this.numberOfPages
     this.loadProducts()
-  }
-
-  addProduct(item: PRODUCT_ITEM, type: String | Number) {
-    console.log(item)
   }
 }
 </script>

@@ -33,8 +33,13 @@ export const mutations: MutationTree<RootState> = {
 
 export const actions: ActionTree<RootState, RootState> = {
     async getProducts({ commit }, payload) {
-        const request = await this.$axios.get('venues/164/activities', payload);
-        return request;
+        try {
+            const request = await this.$axios.get('venues/164/activities', payload);
+            commit('SET_PRODUCTS', request.data)
+            return request;
+        } catch (error) {
+            throw new Error(error);
+        }
     },
 }
 

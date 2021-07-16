@@ -40,10 +40,6 @@ export interface STATE {
     wishlist: Array<String>;
 }
 
-export interface SET_PRODUCTS_PAYLOAD {
-    id: String
-}
-
 export interface FETCH_PARAMS {
     limit: number
     offset: number
