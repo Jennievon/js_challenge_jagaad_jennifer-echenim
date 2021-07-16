@@ -1,8 +1,8 @@
-import { PRODUCT_ITEM } from "~/@types";
+import { PRODUCT_ITEM } from '~/@types'
 
-let products;
-let qs = {
-  limit: 6, offset: 0
+const qs = {
+  limit: 6,
+  offset: 0,
 }
 
 describe('Index Page', () => {
@@ -11,22 +11,22 @@ describe('Index Page', () => {
     cy.wait(500)
     cy.request({
       method: 'GET',
-      url: "https://api.musement.com/api/v3/venues/164/activities",
+      url: 'https://api.musement.com/api/v3/venues/164/activities',
       qs,
       headers: {
         'Content-Type': 'application/json',
         'Accept-Language': 'it',
         'X-Musement-Currency': 'EUR',
-        'X-Musement-Version': '3.4.0'
-      }
-    }).as("products")
+        'X-Musement-Version': '3.4.0',
+      },
+    }).as('products')
   })
 
   it('Gets product from the API', () => {
     cy.visit('/')
     // @ts-ignore
     cy.get('@products').then(({ body }) => {
-      products = body.map((product: PRODUCT_ITEM) => {
+      body.map((product: PRODUCT_ITEM) => {
         return {
           cover_image_url: product.cover_image_url,
           title: product.title,
@@ -35,9 +35,9 @@ describe('Index Page', () => {
           formatted_value: product.retail_price.formatted_value,
           value: product.retail_price.value,
           original_retail_price: product.original_retail_price,
-          uuid: product.uuid
-        };
-      });
+          uuid: product.uuid,
+        }
+      })
       expect(body).to.have.length(6)
     })
   })
@@ -63,6 +63,4 @@ describe('Index Page', () => {
     cy.wait(500)
     cy.get('.product-list').get('li').should('have.length', 11)
   })
-
-
 })
