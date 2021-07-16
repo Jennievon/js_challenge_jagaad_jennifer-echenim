@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header></Header>
+    <Header />
     <Products :products="productList" />
     <Pagination
       :product-list="productList"
